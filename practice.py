@@ -11,6 +11,22 @@ from pydantic import BaseModel
 import httpx
 import fitz 
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI(
+    title="Resume Question Generator",
+    description="Generates interview questions from a provided resume using Groq API",
+    version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Change to specific domain in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # load .env file to environment
 load_dotenv()

@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-from io import BytesIO
 
 # =========================
 # CONFIG
@@ -33,13 +32,13 @@ if uploaded_file is not None:
                 else:
                     data = response.json()
 
-                    # Display results
                     for round_name, questions in data.items():
-                        st.subheader(round_name.replace("_", " ").title())
-                        for i, q in enumerate(questions, start=1):
-                            st.markdown(f"**Q{i}:** {q['question']}")
-                            if q.get("notes"):
-                                st.markdown(f"*Notes:* {q['notes']}")
+                        with st.expander(round_name.replace("_", " ").title(), expanded=True):
+                            for i, q in enumerate(questions, start=1):
+                                st.markdown(f"**Q{i}:** {q['question']}")
+                                if q.get("notes"):
+                                    st.markdown(f"*Notes:* {q['notes']}")
+
 
             except Exception as e:
                 st.error(f"An error occurred: {e}")
