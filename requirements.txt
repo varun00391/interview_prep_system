@@ -6,4 +6,3 @@ httpx
 PyMuPDF
 streamlit
 python-dotenv
-pandas
